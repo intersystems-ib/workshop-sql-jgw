@@ -1,0 +1,13 @@
+    // unexpire passwords for dev mode
+    new $namespace
+    set $namespace = "%SYS"
+    do ##class(Security.Users).UnExpireUserPasswords("*")
+    
+    set $namespace = "USER"
+    do $System.OBJ.ImportDir("/opt/irisapp/src/Test","*.cls","ck",,1)
+
+    do ##class(Ens.Config.Credentials).SetCredential("MySQL_User","root","SYS")
+
+    do ##class(Ens.Director).StartProduction("Test.Production")
+
+    halt

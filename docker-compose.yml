@@ -1,0 +1,53 @@
+version: "2.2"
+services:  
+  # mysql
+  mysql:
+    build:
+      context: mysql
+      dockerfile: Dockerfile
+    container_name: mysql
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: SYS
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: testpassword
+    volumes:
+    - ./mysql/sql/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+  
+  adminer:
+    container_name: adminer
+    image: adminer
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - 8080:8080
+  
+  # java gateway
+  jgw:
+    build:
+      context: java
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql
+    container_name: jgw
+    restart: always
+    ports: 
+      - 44444:44444
+    environment:
+      - PORT=44444
+
+  # iris
+  iris:
+    init: true
+    container_name: iris
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - 'jgw'
+    ports:
+      - 52773:52773
+      - 51773:51773
+    command: --check-caps false
