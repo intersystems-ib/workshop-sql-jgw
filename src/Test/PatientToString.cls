@@ -2,6 +2,11 @@
 Class Test.PatientToString Extends Ens.BusinessProcessBPL
 {
 
+Storage Default
+{
+<Type>%Storage.Persistent</Type>
+}
+
 /// BPL Definition
 XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 {
@@ -15,7 +20,7 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 
  set stream = ##class(%Stream.GlobalCharacter).%New()
 
- do stream.Write(request.Id_" "_request.Name_" "_request.Lastname)
+ do stream.Write(request.Id_" "_request.Name_" "_request.Lastname_$Char(13)_$Char(10))
 
  set context.patientStream.Stream=stream   ]]>
 </code>
@@ -27,11 +32,6 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 </call>
 </sequence>
 </process>
-}
-
-Storage Default
-{
-<Type>%Storage.Persistent</Type>
 }
 
 }

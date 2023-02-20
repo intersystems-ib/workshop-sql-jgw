@@ -42,8 +42,8 @@ services:
     init: true
     container_name: iris
     build:
-      context: iris
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: iris/Dockerfile
     depends_on:
       - 'jgw'
     ports:

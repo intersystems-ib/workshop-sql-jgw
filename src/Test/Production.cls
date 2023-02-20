@@ -13,7 +13,7 @@ XData ProductionDefinition
     <Setting Target="Host" Name="Port">44444</Setting>
   </Item>
   <Item Name="EnsLib.SQL.Service.GenericService" Category="" ClassName="EnsLib.SQL.Service.GenericService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
-    <Setting Target="Adapter" Name="JDBCClasspath">/jgw/mysql-connector-java-8.0.30.jar</Setting>
+    <Setting Target="Adapter" Name="JDBCClasspath"></Setting>
     <Setting Target="Adapter" Name="JDBCDriver">com.mysql.jdbc.Driver</Setting>
     <Setting Target="Adapter" Name="JGService">EnsLib.JavaGateway.Service</Setting>
     <Setting Target="Adapter" Name="DSN">jdbc:mysql://mysql:3306/test</Setting>
