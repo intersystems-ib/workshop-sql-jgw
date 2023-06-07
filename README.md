@@ -81,10 +81,10 @@ Property Lastname As %String;
 ```
 
 #### Write data to MySQL table
-* Check the `EnsLib.SQL.Service.GenericService` operation in your production.
+* Check the `EnsLib.SQL.Service.Operation` operation in your production.
 * This operation will insert new records in the patient table in MySQL.
 * To test it simply click on it and *Actions* tab > *Test*
   * Set the test request type to: `Test.Patient`
   * Fill out some values for *Id*, *Name* and *LastName*
   * Test your request
-* After testing the operation, you can check that the new records are created in MySQL table.
+* After testing the operation, you can check that the new records are created in MySQL table
