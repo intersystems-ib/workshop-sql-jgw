@@ -3,7 +3,7 @@ Class Test.Production Extends Ens.Production
 
 XData ProductionDefinition
 {
-<Production Name="Test.Production" LogGeneralTraceEvents="false">
+<Production Name="Test.Production" TestingEnabled="true" LogGeneralTraceEvents="false">
   <Description></Description>
   <ActorPoolSize>2</ActorPoolSize>
   <Item Name="EnsLib.JavaGateway.Service" Category="" ClassName="EnsLib.JavaGateway.Service" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
@@ -27,6 +27,16 @@ XData ProductionDefinition
     <Setting Target="Adapter" Name="FilePath">/tmp/out</Setting>
   </Item>
   <Item Name="Test.PatientToString" Category="" ClassName="Test.PatientToString" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  </Item>
+  <Item Name="EnsLib.SQL.Operation.GenericOperation" Category="" ClassName="EnsLib.SQL.Operation.GenericOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Adapter" Name="Credentials">MySQL_User</Setting>
+    <Setting Target="Adapter" Name="DSN">jdbc:mysql://mysql:3306/test</Setting>
+    <Setting Target="Adapter" Name="JDBCDriver">com.mysql.jdbc.Driver</Setting>
+    <Setting Target="Adapter" Name="JGService">EnsLib.JavaGateway.Service</Setting>
+    <Setting Target="Host" Name="RequestClass">Test.Patient</Setting>
+    <Setting Target="Host" Name="InputParameters">*Id,*Name,*Lastname</Setting>
+    <Setting Target="Host" Name="Query">insert into patient (ID, Name, Lastname) values (?, ?, ?)</Setting>
+    <Setting Target="Host" Name="ParamSQLTypes"></Setting>
   </Item>
 </Production>
 }

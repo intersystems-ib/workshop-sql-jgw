@@ -15,7 +15,8 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 <property name='patientStream' type='Ens.StreamContainer' instantiate='0' />
 </context>
 <sequence xend='200' yend='450' >
-<code xpos='200' ypos='250' >
+<code name='Patient record to string' xpos='200' ypos='250' >
+<annotation><![CDATA[Convert patient record to string]]></annotation>
 <![CDATA[ set context.patientStream = ##class(Ens.StreamContainer).%New()
 
  set stream = ##class(%Stream.GlobalCharacter).%New()
@@ -25,6 +26,7 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
  set context.patientStream.Stream=stream   ]]>
 </code>
 <call name='Invoke file operation' target='EnsLib.File.PassthroughOperation' async='1' xpos='200' ypos='350' >
+<annotation><![CDATA[Send to file operation]]></annotation>
 <request type='Ens.StreamContainer' >
 <assign property="callrequest" value="context.patientStream" action="set" />
 </request>
